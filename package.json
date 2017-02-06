@@ -1,0 +1,7 @@
+{
+  "name": "devops-doorbell",
+  "version": "0.0.1",
+  "dependencies": {
+    "twilio": "^2.11.1"
+  }
+}

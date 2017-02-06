@@ -1,0 +1,24 @@
+service: devops-doorbell
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+
+package:
+  exclude:
+    - .env
+
+functions:
+  button:
+    handler: handler.button
+    memorySize: 128
+    timeout: 6
+    events:
+      - iot:
+          sql: "SELECT * FROM '${env:IOT_ID}'"
+    environment:
+      to_phone: ${env:TO_PHONE}
+      from_phone: ${env:FROM_PHONE}
+      message: ${env:MESSAGE}
+      twilio_account_sid: ${env:TWILIO_ACCOUNT_SID}
+      twilio_auth_token: ${env:TWILIO_AUTH_TOKEN}
